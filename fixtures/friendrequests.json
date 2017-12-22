@@ -1,0 +1,38 @@
+[
+{
+  "model": "friends.friendshiprequest",
+  "pk": 1,
+  "fields": {
+    "from_user": 4,
+    "to_user": 1,
+    "message": "",
+    "created": "2017-10-12T08:32:27Z",
+    "rejected": null,
+    "viewed": null
+  }
+},
+{
+  "model": "friends.friendshiprequest",
+  "pk": 2,
+  "fields": {
+    "from_user": 4,
+    "to_user": 2,
+    "message": "",
+    "created": "2017-10-12T08:32:42Z",
+    "rejected": null,
+    "viewed": null
+  }
+},
+{
+  "model": "friends.friendshiprequest",
+  "pk": 3,
+  "fields": {
+    "from_user": 3,
+    "to_user": 2,
+    "message": "",
+    "created": "2017-10-12T08:32:57Z",
+    "rejected": null,
+    "viewed": null
+  }
+}
+]

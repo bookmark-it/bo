@@ -1,0 +1,50 @@
+[
+{
+  "model": "bookmarks.bookmarksuser",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "default_bk_view": "BLI",
+    "open_bk_option": "TAB",
+    "user_level": "CORP",
+    "public": false,
+    "last_data_clean": "2016-10-07T20:53:39Z"
+  }
+},
+{
+  "model": "bookmarks.bookmarksuser",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "default_bk_view": "BLI",
+    "open_bk_option": "TAB",
+    "user_level": "CORP",
+    "public": false,
+    "last_data_clean": "2016-10-07T20:53:43Z"
+  }
+},
+{
+  "model": "bookmarks.bookmarksuser",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "default_bk_view": "BLI",
+    "open_bk_option": "TAB",
+    "user_level": "CORP",
+    "public": false,
+    "last_data_clean": "2016-10-07T20:53:48Z"
+  }
+},
+{
+  "model": "bookmarks.bookmarksuser",
+  "pk": 4,
+  "fields": {
+    "user": 3,
+    "default_bk_view": "BLI",
+    "open_bk_option": "TAB",
+    "user_level": "CORP",
+    "public": false,
+    "last_data_clean": "2016-10-07T20:53:53Z"
+  }
+}
+]

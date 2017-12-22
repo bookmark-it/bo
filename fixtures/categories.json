@@ -1,0 +1,92 @@
+[
+{
+  "model": "bookmarks.category",
+  "pk": 5,
+  "fields": {
+    "name": "News",
+    "icon_code": "ti-book",
+    "added_datetime": null,
+    "edit_datetime": "2017-10-13T03:00:31.843Z"
+  }
+},
+{
+  "model": "bookmarks.category",
+  "pk": 7,
+  "fields": {
+    "name": "Lifestyle",
+    "icon_code": "ti-microphone-alt",
+    "added_datetime": null,
+    "edit_datetime": "2017-10-13T03:00:06.614Z"
+  }
+},
+{
+  "model": "bookmarks.category",
+  "pk": 9,
+  "fields": {
+    "name": "Learn",
+    "icon_code": "ti-infinite",
+    "added_datetime": null,
+    "edit_datetime": "2017-10-12T21:42:29.681Z"
+  }
+},
+{
+  "model": "bookmarks.category",
+  "pk": 10,
+  "fields": {
+    "name": "Media",
+    "icon_code": "ti-control-play",
+    "added_datetime": "2017-10-12T07:49:21.079Z",
+    "edit_datetime": "2017-10-12T21:42:11.105Z"
+  }
+},
+{
+  "model": "bookmarks.category",
+  "pk": 11,
+  "fields": {
+    "name": "Data",
+    "icon_code": "ti-rocket",
+    "added_datetime": "2017-10-12T07:49:35.589Z",
+    "edit_datetime": "2017-10-13T02:58:31.417Z"
+  }
+},
+{
+  "model": "bookmarks.category",
+  "pk": 12,
+  "fields": {
+    "name": "Shopping",
+    "icon_code": "ti-shopping-cart",
+    "added_datetime": "2017-10-12T21:39:44.548Z",
+    "edit_datetime": "2017-10-12T21:39:44.548Z"
+  }
+},
+{
+  "model": "bookmarks.category",
+  "pk": 13,
+  "fields": {
+    "name": "Places",
+    "icon_code": "ti-map-alt",
+    "added_datetime": "2017-10-12T21:41:54.221Z",
+    "edit_datetime": "2017-10-12T21:41:54.221Z"
+  }
+},
+{
+  "model": "bookmarks.category",
+  "pk": 14,
+  "fields": {
+    "name": "Services",
+    "icon_code": "ti-info-alt",
+    "added_datetime": "2017-10-16T00:42:55.026Z",
+    "edit_datetime": "2017-10-16T00:44:13.971Z"
+  }
+},
+{
+  "model": "bookmarks.category",
+  "pk": 15,
+  "fields": {
+    "name": "Files and documents",
+    "icon_code": "ti-file",
+    "added_datetime": "2017-10-16T00:45:00.971Z",
+    "edit_datetime": "2017-10-16T00:45:28.168Z"
+  }
+}
+]

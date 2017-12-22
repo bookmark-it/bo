@@ -1,0 +1,9 @@
+[
+{
+  "model": "bookmarks.blacklistedwebsites",
+  "pk": 1,
+  "fields": {
+    "url": "https://getpocket.com"
+  }
+}
+]

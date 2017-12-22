@@ -1,0 +1,16 @@
+[
+{
+  "model": "bookmarks.keyword",
+  "pk": 1,
+  "fields": {
+    "name": "weird"
+  }
+},
+{
+  "model": "bookmarks.keyword",
+  "pk": 2,
+  "fields": {
+    "name": "confusing"
+  }
+}
+]

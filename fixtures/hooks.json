@@ -1,0 +1,11 @@
+[
+{
+  "model": "hooks.hook",
+  "pk": 1,
+  "fields": {
+    "user": 4,
+    "url": "http://www.g00n.ovh/hooks/add-bookmark",
+    "active": true
+  }
+}
+]

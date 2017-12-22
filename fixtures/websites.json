@@ -1,0 +1,26 @@
+[
+{
+  "model": "bookmarks.website",
+  "pk": 1,
+  "fields": {
+    "name": "Amazon",
+    "url": "http://amazon.com",
+    "website_type": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "bookmarks.website",
+  "pk": 2,
+  "fields": {
+    "name": "Amazon",
+    "url": "http://amazon.fr",
+    "website_type": [
+      1,
+      2
+    ]
+  }
+}
+]

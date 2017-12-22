@@ -1,0 +1,170 @@
+[
+{
+  "model": "bookmarks.websitetype",
+  "pk": 1,
+  "fields": {
+    "wtype": "ecommerce"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 2,
+  "fields": {
+    "wtype": "shopping"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 4,
+  "fields": {
+    "wtype": "Portfolio"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 5,
+  "fields": {
+    "wtype": "Curiculum Vitae"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 6,
+  "fields": {
+    "wtype": "Business"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 7,
+  "fields": {
+    "wtype": "Shopping"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 8,
+  "fields": {
+    "wtype": "Media"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 9,
+  "fields": {
+    "wtype": "Musique"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 10,
+  "fields": {
+    "wtype": "Clothing"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 11,
+  "fields": {
+    "wtype": "Job Board"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 12,
+  "fields": {
+    "wtype": "Directory"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 13,
+  "fields": {
+    "wtype": "Question & Answer"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 14,
+  "fields": {
+    "wtype": "NonProfits and Relig"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 15,
+  "fields": {
+    "wtype": "Communities"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 16,
+  "fields": {
+    "wtype": "Coupon"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 17,
+  "fields": {
+    "wtype": "Auction"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 18,
+  "fields": {
+    "wtype": "Multilingual"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 19,
+  "fields": {
+    "wtype": "Wiki"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 20,
+  "fields": {
+    "wtype": "Knowledgebase"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 21,
+  "fields": {
+    "wtype": "Podcast"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 22,
+  "fields": {
+    "wtype": "Photography"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 23,
+  "fields": {
+    "wtype": "Video"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 24,
+  "fields": {
+    "wtype": "Education"
+  }
+},
+{
+  "model": "bookmarks.websitetype",
+  "pk": 25,
+  "fields": {
+    "wtype": "Blog"
+  }
+}
+]

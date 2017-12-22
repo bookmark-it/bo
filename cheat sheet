@@ -1,0 +1,26 @@
+
+
+
+## bo
+
+	make init
+	make start_me_up
+
+	make start_me_up
+	make server
+
+	./venv/bin/pip freeze > requirements.txt 
+	./venv/bin/pip install django-friendship
+	./venv/bin/python manage.py runserver
+
+
+
+## Crossapp
+
+	npm i
+	npm run dev
+
+
+
+
+
