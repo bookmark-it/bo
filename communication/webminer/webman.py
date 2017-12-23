@@ -148,8 +148,10 @@ def getSoupInfo(soup, source_url):
 
 
 
+# Celery tasks
+#@shared_task
 def retrieveUrlContent(bookmark_object):
-#RETRIEVE RAW HTML AND GENERATE RETRIEVED DATA TEMP DICT
+#RETRIEVE RAW HTML AND GENERATE RETRIEVED DATA TEMP DICT$
     a = 0
     url =  bookmark_object["url"]
     soup = getSoup(url)
