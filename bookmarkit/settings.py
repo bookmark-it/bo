@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 import os
 import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -20,10 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i+acxn5(akgsn!sr4^qgf(^m&*@+g1@u^t@=8s@axc41ml*f=s'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
+HEROKU = config('HEROKU', default=False, cast=bool)
 
 # DJANGO REST FRAMEWORK CONFIRUATION
 REST_FRAMEWORK = {
@@ -51,15 +53,20 @@ DJOSER = {
 
 # CELERY CONFIGURATION
 CELERY_RESULT_BACKEND = 'django-db' # may also be 'django-cache'
-BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+BROKER_URL = config('REDIS_URL', default='') 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
+
+
+
+
+
 # SENDGRID CONFIRUATION
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'Alsib'
-EMAIL_HOST_PASSWORD = 'P'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='') 
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='') 
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -139,11 +146,10 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Parse database configuration from $DATABASE_URL
-#DATABASES['default'] =  dj_database_url.config()
+if HEROKU:
+    DATABASES['default'] =  dj_database_url.config()
 
-# Enable Persistent Connections
-#DATABASES['default']['CONN_MAX_AGE'] = 500
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
