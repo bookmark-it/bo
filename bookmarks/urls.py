@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^search/$', views.query.as_view({'get': 'list'})),
     url(r'^auth/me/upload', views.Upload.as_view({'get': 'list'})),
     url(r'^auth/me/$', views.MeView.as_view({'get': 'retrieve'}), name='me'),
+    url(r'^auth/', include('djoser.urls')),
     url(r'^auth/', include('djoser.urls.authtoken')),
 ]
