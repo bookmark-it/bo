@@ -15,7 +15,6 @@ from .serializers import BookmarkSerializer, CategorySerializer, KeywordSerializ
 from django.contrib.auth.models import User
 from friends.models import Friend
 
-from bs4 import BeautifulSoup
 import json
 
 from communication.email import postman, library
@@ -70,15 +69,10 @@ class BookmarkViewSet(viewsets.ViewSet):
         queryset = Bookmark.objects.filter(user=request.user)
         bookmark = get_object_or_404(queryset, pk = pk)
         serializer = self.serializer_class(bookmark)
-# Call communication : web miner to retrieve title & image
-        add_info = webman.retrieveUrlContent(serializer.data)
-        serializer = self.serializer_class(bookmark, data = add_info, context={'request':request})
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        else :
-            return Response(serializer.errors)
-### finished hack
+        # Call communication : web miner to retrieve title & image
+        # add_info = webman.retrieveUrlContent(serializer.data)
+        
+        return Response(serializer.data)
 
     def update(self, request, pk=None):
         try:
