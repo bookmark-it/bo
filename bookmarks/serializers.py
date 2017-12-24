@@ -109,11 +109,11 @@ class BookmarkSerializer(serializers.ModelSerializer):
         return instance
 
 class FolderParentSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), default=serializers.CurrentUserDefault())
+    owner = UserSerializer(many=False, read_only=True)
     class Meta:
         model = Folder
-        fields = ('id', 'user', 'name', 'public')
-        read_only_fields = ('user', 'id', 'name', 'public')
+        fields = ('id', 'owner', 'name', 'public')
+        read_only_fields = ('owner', 'id', 'name', 'public')
 
 
 class FolderSerializer(serializers.ModelSerializer):
@@ -122,7 +122,6 @@ class FolderSerializer(serializers.ModelSerializer):
     owner = UserSerializer(many=False, read_only=True)
     bookmarks = BookmarkSerializer(many=True, read_only=True)
     #folder_set = FolderParentSerializer(many=False, read_only=True)
-    parent = FolderParentSerializer(many=False, read_only=True)
     children_directories = FolderParentSerializer(many=True, read_only=True)
 
     class Meta:
@@ -138,21 +137,8 @@ class FolderSerializer(serializers.ModelSerializer):
             user = request.user
             validated_data['owner'] = user
 
-        if request and hasattr(request, "parent") :
-            print(request)
-            #parent = Folder.objects.get(pk=request)
-
-
         folder = Folder.objects.create(**validated_data)
         return folder
-
-    def update(self, instance, validated_data):
-        
-        for key in validated_data:
-            setattr(instance, str(key), validated_data.get(key))
-        instance.save()
-        return instance
-
 
 
 class BookmarksSerializer(serializers.Serializer):
