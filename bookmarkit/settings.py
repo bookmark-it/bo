@@ -48,8 +48,13 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': True,
     #'SEND_CONFIRMATION_EMAIL': True,
     'ACTIVATION_URL': 'app/auth/activate/?uid={uid}&token{token}',
-    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}'
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'SERIALIZERS': {
+        # need to add unicity constraint on user model
+        #https://stackoverflow.com/questions/32789103/pass-additional-data-while-registering-user-using-djoser-and-django-rest-framewo
+    }
 }
+
 
 # CELERY CONFIGURATION
 CELERY_RESULT_BACKEND = 'django-db' # may also be 'django-cache'
@@ -103,6 +108,19 @@ MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware'
 )
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
 
 ROOT_URLCONF = 'bookmarkit.urls'
 
