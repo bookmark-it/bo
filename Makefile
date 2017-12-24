@@ -39,8 +39,8 @@ start_me_up:
 	$(PYTHON) manage.py loaddata fixtures/hooks.json
 	$(PYTHON) manage.py loaddata fixtures/categories.json
 	$(PYTHON) manage.py loaddata fixtures/keywords.json
-	$(PYTHON) manage.py loaddata fixtures/bookmarks.json
 	$(PYTHON) manage.py loaddata fixtures/folders.json
+	$(PYTHON) manage.py loaddata fixtures/bookmarks.json
 	$(PYTHON) manage.py loaddata fixtures/websitetypes.json
 	$(PYTHON) manage.py loaddata fixtures/websites.json
 	$(PYTHON) manage.py loaddata fixtures/blacklistedwebsites.json
