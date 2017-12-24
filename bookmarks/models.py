@@ -90,43 +90,6 @@ class Category(models.Model):
         return u"%s" % self.name
 
 
-class Bookmark(models.Model):
-    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name='user')
-
-    url = models.URLField(max_length=250)
-    source = models.URLField(max_length=250, blank=True)
-    title = models.CharField(max_length=250, blank=True)
-    description = models.CharField(max_length=250, blank=True)
-
-    favorite = models.BooleanField(default=False)
-    tosort = models.BooleanField(default=False)
-    toread = models.BooleanField(default=False)
-
-    image_url = models.URLField(max_length=250, blank=True)
-    favicon_url = models.URLField(max_length=250, blank=True)
-
-    categories = models.ManyToManyField(Category, blank=True)
-    keywords = models.ManyToManyField(Keyword, blank=True)
-
-
-    friends = models.BooleanField(default=True)
-    public = models.BooleanField(default=False)
-    archived = models.BooleanField(default=False)
-    verified = models.BooleanField(default=False) #by marvin or by peers ?
-
-    # number of open
-    # number of shares or bool has been shared
-    added_datetime = models.DateTimeField(auto_now_add=True, null=True)
-    edit_datetime = models.DateTimeField(auto_now_add=True, null=True)
-
-    def __unicode__(self):
-        return u"%s" % self.title
-
-
-    class Meta:
-        unique_together = ('user', 'url')
-        ordering = ('edit_datetime', 'added_datetime')
-
 
 class Folder(models.Model):
     owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
@@ -148,3 +111,42 @@ class Folder(models.Model):
     @property
     def sharecount(self):
         return len(self.collaborators.all())
+
+
+class Bookmark(models.Model):
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE, related_name='user')
+
+    url = models.URLField(max_length=250)
+    source = models.URLField(max_length=250, blank=True)
+    title = models.CharField(max_length=250, blank=True)
+    description = models.CharField(max_length=250, blank=True)
+
+    favorite = models.BooleanField(default=False)
+    tosort = models.BooleanField(default=False)
+    toread = models.BooleanField(default=False)
+
+    image_url = models.URLField(max_length=250, blank=True)
+    favicon_url = models.URLField(max_length=250, blank=True)
+
+    folder = models.ForeignKey(Folder, null=True, blank=True, on_delete=models.SET_NULL, related_name="bookmarks")
+    categories = models.ManyToManyField(Category, blank=True)
+    keywords = models.ManyToManyField(Keyword, blank=True)
+
+
+    friends = models.BooleanField(default=True)
+    public = models.BooleanField(default=False)
+    archived = models.BooleanField(default=False)
+    verified = models.BooleanField(default=False) #by marvin or by peers ?
+
+    # number of open
+    # number of shares or bool has been shared
+    added_datetime = models.DateTimeField(auto_now_add=True, null=True)
+    edit_datetime = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __unicode__(self):
+        return u"%s" % self.title
+
+
+    class Meta:
+        unique_together = ('user', 'url')
+        ordering = ('edit_datetime', 'added_datetime')

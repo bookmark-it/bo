@@ -13,12 +13,12 @@ init:
 	virtualenv -p `which python3.6` venv --verbose
 
 dump_fixtures:
-	$(PYTHON) manage.py dumpdata --indent 2 bookmarks.Bookmark > fixtures/bookmarks.json
 	$(PYTHON) manage.py dumpdata --indent 2 bookmarks.Category > fixtures/categories.json
 	$(PYTHON) manage.py dumpdata --indent 2 bookmarks.Folder > fixtures/folders.json
 	$(PYTHON) manage.py dumpdata --indent 2 bookmarks.Website > fixtures/websites.json
 	$(PYTHON) manage.py dumpdata --indent 2 bookmarks.Keyword > fixtures/keywords.json
 	$(PYTHON) manage.py dumpdata --indent 2 bookmarks.BookmarksUser > fixtures/bookmarkusers.json
+	$(PYTHON) manage.py dumpdata --indent 2 bookmarks.Bookmark > fixtures/bookmarks.json
 	$(PYTHON) manage.py dumpdata --indent 2 bookmarks.WebsiteType > fixtures/websitetypes.json
 	$(PYTHON) manage.py dumpdata --indent 2 bookmarks.BlacklistedWebsites > fixtures/blacklistedwebsites.json
 	$(PYTHON) manage.py dumpdata --indent 2 hooks.Hook > fixtures/hooks.json

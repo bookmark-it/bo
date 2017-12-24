@@ -37,14 +37,26 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'icon_code')
 
 
+
+class SimpleFolderSerializer(serializers.ModelSerializer):
+    #user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), default=serializers.CurrentUserDefault())
+    #folder_set = FolderParentSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Folder
+        fields = ('id', 'name', 'added_datetime')
+        read_only_fields = ('owner', 'id', 'sharecount')
+
+
 class BookmarkSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True, required=False)
     keywords = KeywordSerializer(many=True, required=False)
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), default=serializers.CurrentUserDefault())
+    folder = SimpleFolderSerializer(many=False)
 
     class Meta:
         model = Bookmark
-        fields = ('id', 'url', 'user', 'title', 'description', 'source', 'image_url', 'favicon_url', 'categories', 'keywords', 'favorite', 'toread', 'added_datetime', 'edit_datetime')
+        fields = ('id', 'url', 'user', 'title', 'description', 'source', 'image_url', 'favicon_url', 'categories', 'keywords', 'favorite', 'toread', 'added_datetime', 'edit_datetime', 'folder')
 
     def create(self, validated_data):
         user = None
@@ -106,17 +118,17 @@ class FolderParentSerializer(serializers.ModelSerializer):
 
 class FolderSerializer(serializers.ModelSerializer):
     #user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), default=serializers.CurrentUserDefault())
+    collaborators = UserSerializer(many=True, read_only=True)
+    owner = UserSerializer(many=False, read_only=True)
     bookmarks = BookmarkSerializer(many=True, read_only=True)
-    authorised_users = UserSerializer(many=True, read_only=True)
-    user = UserSerializer(many=False, read_only=True)
     #folder_set = FolderParentSerializer(many=False, read_only=True)
     parent = FolderParentSerializer(many=False, read_only=True)
     children_directories = FolderParentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Folder
-        fields = ('id', 'user', 'name', 'authorised_users', 'parent', 'added_datetime', 'bookmarks', 'children_directories', 'public', 'sharecount')
-        read_only_fields = ('user', 'id', 'sharecount')
+        fields = ('id', 'owner', 'name', 'collaborators', 'parent', 'added_datetime', 'children_directories', 'public', 'sharecount', 'bookmarks')
+        read_only_fields = ('owner', 'id', 'sharecount')
 
 
 class BookmarksSerializer(serializers.Serializer):

@@ -10,6 +10,8 @@ from rest_framework.authentication import TokenAuthentication, SessionAuthentica
 from rest_framework.permissions import IsAdminUser
 from rest_framework.pagination import PageNumberPagination
 
+from django.db.models import Count
+
 from .utils import forwardRequest
 from .models import Category, Bookmark, Keyword, Folder, Website, BookmarksUser, Notification
 from .serializers import BookmarkSerializer, CategorySerializer, KeywordSerializer, FolderSerializer, \
@@ -186,8 +188,8 @@ class FolderViewSet(viewsets.ModelViewSet):
         else:
             #return Folder.objects.filter(user=self.request.user)
             #queryset = Folder.objects.filter(authorised_users__id=self.request.user.id)
-            queryset = Folder.objects.filter(Q(authorised_users__id=self.request.user.id) | Q(user=self.request.user)).filter(parent=None).distinct()
-
+            queryset = Folder.objects.filter(Q(collaborators__id=self.request.user.id) | Q(owner=self.request.user)).filter(parent=None).distinct()
+            queryset = queryset.annotate(bk_count=Count('bookmarks')).order_by('-bk_count')
 
             return queryset
             #return Folder.objects.filter(user=self.request.user)
@@ -196,7 +198,7 @@ class FolderViewSet(viewsets.ModelViewSet):
         serializer.save()
 
     def retrieve(self, request, pk=None):
-        queryset = Folder.objects.filter(Q(authorised_users__id=self.request.user.id) | Q(user=self.request.user)).distinct()
+        queryset = Folder.objects.filter(Q(collaborators__id=self.request.user.id) | Q(owner=self.request.user)).distinct()
         folder = get_object_or_404(queryset, pk = pk)
 
         serializer = self.serializer_class(folder)

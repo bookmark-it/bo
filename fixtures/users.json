@@ -21,8 +21,8 @@
   "model": "auth.user",
   "pk": 2,
   "fields": {
-    "password": "pbkdf2_sha256$24000$7d3uerpsUEzp$XyM68EEarrUgkbHinAZ2Xt7P4A+61fF/ZW+FCaKK04s=",
-    "last_login": "2017-10-16T00:41:54.000Z",
+    "password": "pbkdf2_sha256$100000$CBmpPEpBw5wi$/A2r67qVWvdE4203+HTduBi8vuk3QhB33IR0PaDI19E=",
+    "last_login": "2017-12-24T00:28:30.688Z",
     "is_superuser": true,
     "username": "alex",
     "first_name": "",
