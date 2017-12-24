@@ -27,6 +27,9 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 HEROKU = config('HEROKU', default=False, cast=bool)
 
+
+BONSAI_URL = config('BONSAI_URL', default='')
+
 # DJANGO REST FRAMEWORK CONFIRUATION
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

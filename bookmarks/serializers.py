@@ -130,6 +130,30 @@ class FolderSerializer(serializers.ModelSerializer):
         fields = ('id', 'owner', 'name', 'collaborators', 'parent', 'added_datetime', 'children_directories', 'public', 'sharecount', 'bookmarks')
         read_only_fields = ('owner', 'id', 'sharecount')
 
+    def create(self, validated_data):
+        user = None
+        request = self.context['request']
+        #if request and hasattr(request, "user") and not hasattr(request.user, 'hook'):
+        if request and hasattr(request, "user") :
+            user = request.user
+            validated_data['owner'] = user
+
+        if request and hasattr(request, "parent") :
+            print(request)
+            #parent = Folder.objects.get(pk=request)
+
+
+        folder = Folder.objects.create(**validated_data)
+        return folder
+
+    def update(self, instance, validated_data):
+        
+        for key in validated_data:
+            setattr(instance, str(key), validated_data.get(key))
+        instance.save()
+        return instance
+
+
 
 class BookmarksSerializer(serializers.Serializer):
     bookmarks = BookmarkSerializer(many=True)

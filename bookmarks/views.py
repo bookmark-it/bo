@@ -205,6 +205,55 @@ class FolderViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
+    def create(self, request):
+        try :
+            folder = Folder.objects.get(user=request.user, name=request.data.get('name'))
+            return_status = status.HTTP_200_OK
+        except :
+            serializer = self.serializer_class(data = request.data, context={'request':request})
+            if serializer.is_valid():
+                serializer.save()
+                return Response(
+                    serializer.data, status=status.HTTP_202_ACCEPTED
+                )
+
+            return Response({
+                'status': 'Bad request',
+                'message': 'Folder could not be created with received data.',
+                'data' : str(request.data),
+                'validated data' : serializer.validated_data,
+                'errors' : serializer.errors,
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = self.serializer_class(folder)
+
+        return Response(
+            serializer.data, status=return_status
+        )
+
+    def update(self, request, pk=None):
+        try:
+            folder = Folder.objects.get(pk=pk, owner=request.user)
+        except Folder.DoesNotExist:
+            return Response({
+                'status': 'Not Found',
+                'message': 'Folder could not be found.'
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.serializer_class(folder, data = request.data, context={'request':request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                serializer.data, status=status.HTTP_202_ACCEPTED
+            )
+
+        return Response({
+            'status': 'Bad request',
+            'message': 'Folder could not be updated with received data.'
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+
+
 class WebsiteViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticated,)
