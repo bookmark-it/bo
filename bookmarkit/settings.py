@@ -53,8 +53,10 @@ DJOSER = {
 
 # CELERY CONFIGURATION
 CELERY_RESULT_BACKEND = 'django-db' # may also be 'django-cache'
-BROKER_URL = config('REDIS_URL', default='') 
-CELERY_ACCEPT_CONTENT = ['json']
+#BROKER_URL = config('REDIS_URL', default='') 
+#CELERY_RESULT_BACKEND = config('REDIS_URL', default='') 
+BROKER_URL = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 

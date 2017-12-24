@@ -84,12 +84,12 @@ class BookmarkSerializer(serializers.ModelSerializer):
         for cat in categories_data:
             category, created = Category.objects.get_or_create(**cat)
             category_list.append(category)
-        instance.categories = category_list
+        #instance.categories = category_list
 
         for key in keywords_data:
             keyword, _ = Keyword.objects.get_or_create(**key)
             keyword_list.append(keyword)
-        instance.keywords = keyword_list
+        #instance.keywords = keyword_list
 
         for key in validated_data:
             setattr(instance, str(key), validated_data.get(key))

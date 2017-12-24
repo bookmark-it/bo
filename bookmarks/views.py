@@ -1,3 +1,6 @@
+from __future__ import absolute_import, unicode_literals
+from celery import shared_task 
+
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from rest_framework import status, permissions, viewsets, generics
@@ -17,9 +20,23 @@ from friends.models import Friend
 
 import json
 
+
 from communication.email import postman, library
 from communication.webminer import webman
 from communication.fileimport import netscape_bookmarkfile_parser as nbp
+
+@shared_task(bind=True)
+def tempCeleryFunction(self, request, bookmark, serializer) : 
+    add_info = webman.retrieveUrlContent(serializer.data)
+    serializer = BookmarkSerializer(bookmark, data = add_info, context={'request':request})
+    if serializer.is_valid():
+        serializer.save()
+        print(serializer.data)
+    else :
+        print(serializer.errors)
+
+
+
 
 class BookmarkViewSet(viewsets.ViewSet):
     authentication_classes = (TokenAuthentication, SessionAuthentication)
@@ -69,9 +86,9 @@ class BookmarkViewSet(viewsets.ViewSet):
         queryset = Bookmark.objects.filter(user=request.user)
         bookmark = get_object_or_404(queryset, pk = pk)
         serializer = self.serializer_class(bookmark)
-        # Call communication : web miner to retrieve title & image
-        # add_info = webman.retrieveUrlContent(serializer.data)
-        
+# Call communication : web miner to retrieve title & image
+        #webman.retrieveUrlContent(serializer.data)
+        #tempCeleryFunction.delay(request=request, bookmark=bookmark, serializer=serializer)
         return Response(serializer.data)
 
     def update(self, request, pk=None):

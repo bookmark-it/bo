@@ -7,6 +7,33 @@ from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 import bs4 as BeautifulSoup
 
+
+
+import time
+
+
+#from celery.decorators import task
+from celery import shared_task
+
+@shared_task
+def testCeleryFunction():
+    print('rororoorororororo - start')
+    time.sleep(5)
+    print('rororoorororororo - end')
+
+
+# Celery tasks
+@shared_task
+def celeryWebMiner(url):
+    soup = getSoup(url) 
+    temp = getSoupInfo(soup)
+    print(temp)
+    print(temp) 
+
+
+
+
+
 def getUrlData(url):
     response_raw_data = ""
     try:
@@ -87,6 +114,8 @@ def getSoupInfo(soup, source_url):
 
     return temp
 
+#@task(name="celery_mine_url")
+@shared_task
 def retrieveUrlContent(bookmark_object):
 #RETRIEVE RAW HTML AND GENERATE RETRIEVED DATA TEMP DICT$
     a = 0

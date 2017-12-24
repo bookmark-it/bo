@@ -129,18 +129,22 @@ class Bookmark(models.Model):
 
 
 class Folder(models.Model):
-    name = models.CharField(max_length=20)
-    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
-    public = models.BooleanField(default=False)
-    authorised_users = models.ManyToManyField(User, blank=True, related_name="authorised_users")
+    owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     parent = models.ForeignKey('Folder', blank=True, null=True, related_name="children_directories", on_delete=models.CASCADE)
+    name = models.CharField(max_length=20)
+    shared = models.BooleanField(default=False)
+    collaborators = models.ManyToManyField(User, blank=True, related_name="collaborators")
+    public = models.BooleanField(default=False)
+    followers = models.ManyToManyField(User, blank=True, related_name="followers")
     added_datetime = models.DateTimeField(auto_now_add=True, null=True)
     edit_datetime = models.DateTimeField(auto_now=True, null=True)
-    bookmarks = models.ManyToManyField(Bookmark, blank=True)
 
     def __unicode__(self):
         return u"%s" % self.name
 
+    class Meta:
+        ordering = ('edit_datetime', 'added_datetime')
+
     @property
     def sharecount(self):
-        return len(self.authorised_users.all())
+        return len(self.collaborators.all())

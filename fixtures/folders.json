@@ -3,153 +3,52 @@
   "model": "bookmarks.folder",
   "pk": 1,
   "fields": {
-    "name": "Bookmark ideas",
-    "user": 2,
-    "public": false,
+    "owner": 2,
     "parent": null,
-    "added_datetime": "2016-08-04T22:04:05.537Z",
-    "edit_datetime": "2016-08-04T22:04:05.537Z",
-    "authorised_users": [
+    "name": "Bookmark-it",
+    "shared": true,
+    "public": false,
+    "added_datetime": "2017-12-24T00:28:49.707Z",
+    "edit_datetime": "2017-12-24T00:28:49.707Z",
+    "collaborators": [
       1,
-      2,
-      17
+      2
     ],
-    "bookmarks": [
-      2,
-      5,
-      7,
-      16,
-      1
-    ]
+    "followers": []
   }
 },
 {
   "model": "bookmarks.folder",
   "pk": 2,
   "fields": {
-    "name": "Musique",
-    "user": 2,
-    "public": false,
+    "owner": 1,
     "parent": null,
-    "added_datetime": "2016-08-04T22:04:13.145Z",
-    "edit_datetime": "2016-08-04T22:04:13.145Z",
-    "authorised_users": [],
-    "bookmarks": []
+    "name": "News",
+    "shared": false,
+    "public": false,
+    "added_datetime": "2017-12-24T00:29:25.787Z",
+    "edit_datetime": "2017-12-24T00:29:42.148Z",
+    "collaborators": [
+      1
+    ],
+    "followers": []
   }
 },
 {
   "model": "bookmarks.folder",
   "pk": 3,
   "fields": {
-    "name": "Movies",
-    "user": 2,
-    "public": false,
+    "owner": 2,
     "parent": null,
-    "added_datetime": "2016-08-04T22:04:19.552Z",
-    "edit_datetime": "2016-08-04T22:04:19.552Z",
-    "authorised_users": [],
-    "bookmarks": []
-  }
-},
-{
-  "model": "bookmarks.folder",
-  "pk": 4,
-  "fields": {
-    "name": "Parent test",
-    "user": 2,
+    "name": "Perso",
+    "shared": false,
     "public": false,
-    "parent": 4,
-    "added_datetime": "2016-08-04T22:04:26.896Z",
-    "edit_datetime": "2017-10-12T09:46:18.689Z",
-    "authorised_users": [],
-    "bookmarks": []
-  }
-},
-{
-  "model": "bookmarks.folder",
-  "pk": 5,
-  "fields": {
-    "name": "Livres",
-    "user": 2,
-    "public": false,
-    "parent": null,
-    "added_datetime": "2016-08-04T22:04:31.143Z",
-    "edit_datetime": "2016-08-04T22:04:31.143Z",
-    "authorised_users": [
-      1
-    ],
-    "bookmarks": []
-  }
-},
-{
-  "model": "bookmarks.folder",
-  "pk": 6,
-  "fields": {
-    "name": "S\u00e9ries",
-    "user": 2,
-    "public": false,
-    "parent": 7,
-    "added_datetime": "2016-08-04T22:04:38.754Z",
-    "edit_datetime": "2017-10-12T09:39:26.407Z",
-    "authorised_users": [
-      1,
-      3,
-      4
-    ],
-    "bookmarks": []
-  }
-},
-{
-  "model": "bookmarks.folder",
-  "pk": 7,
-  "fields": {
-    "name": "Todo",
-    "user": 2,
-    "public": false,
-    "parent": null,
-    "added_datetime": "2016-08-04T22:04:43.345Z",
-    "edit_datetime": "2016-08-04T22:04:43.345Z",
-    "authorised_users": [],
-    "bookmarks": []
-  }
-},
-{
-  "model": "bookmarks.folder",
-  "pk": 9,
-  "fields": {
-    "name": "Ressources",
-    "user": 2,
-    "public": false,
-    "parent": 1,
-    "added_datetime": "2017-10-14T07:29:25.056Z",
-    "edit_datetime": "2017-10-14T07:29:25.056Z",
-    "authorised_users": [
-      1,
+    "added_datetime": "2017-12-24T00:29:58.443Z",
+    "edit_datetime": "2017-12-24T00:29:58.443Z",
+    "collaborators": [
       2
     ],
-    "bookmarks": []
-  }
-},
-{
-  "model": "bookmarks.folder",
-  "pk": 10,
-  "fields": {
-    "name": "Design ideas",
-    "user": 2,
-    "public": false,
-    "parent": 1,
-    "added_datetime": "2017-10-14T08:02:46.262Z",
-    "edit_datetime": "2017-10-14T08:27:08.078Z",
-    "authorised_users": [
-      1,
-      2
-    ],
-    "bookmarks": [
-      3,
-      8,
-      10,
-      7
-    ]
+    "followers": []
   }
 }
 ]
