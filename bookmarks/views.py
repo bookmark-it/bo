@@ -189,7 +189,8 @@ class FolderViewSet(viewsets.ModelViewSet):
         serializer.save()
 
     def retrieve(self, request, pk=None):
-        queryset = Folder.objects.filter(Q(collaborators__id=self.request.user.id) | Q(owner=self.request.user)).distinct()
+        #queryset = Folder.objects.filter(Q(collaborators__id=self.request.user.id) | Q(owner=self.request.user)).distinct()
+        queryset = Folder.objects.filter(owner=self.request.user)
         folder = get_object_or_404(queryset, pk = pk)
 
         serializer = self.serializer_class(folder)
@@ -225,6 +226,44 @@ class FolderViewSet(viewsets.ModelViewSet):
     def update(self, request, pk=None):
         try:
             folder = Folder.objects.get(pk=pk, owner=request.user)
+        except Folder.DoesNotExist:
+            return Response({
+                'status': 'Not Found',
+                'message': 'Folder could not be found.'
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.serializer_class(folder, data = request.data, context={'request':request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                serializer.data, status=status.HTTP_202_ACCEPTED
+            )
+
+        return Response({
+            'status': 'Bad request',
+            'message': 'Folder could not be updated with received data.'
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+class SharedFolderViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication, SessionAuthentication)
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = FolderSerializer
+
+    def get_queryset(self):
+        queryset = Folder.objects.filter(Q(collaborators__id=self.request.user.id) | Q(owner=self.request.user)).filter(parent=None).distinct()
+        queryset = queryset.annotate(bk_count=Count('bookmarks')).order_by('-bk_count')
+        return queryset
+
+    def retrieve(self, request, pk=None):
+        queryset = Folder.objects.filter(Q(collaborators__id=self.request.user.id)).distinct()
+        folder = get_object_or_404(queryset, pk = pk)
+        serializer = self.serializer_class(folder)
+        return Response(serializer.data)
+
+    def update(self, request, pk=None):
+        try:
+            folder = Folder.objects.get(pk=pk)
+            folder = folder.filter(Q(collaborators__id=self.request.user.id)).first()
         except Folder.DoesNotExist:
             return Response({
                 'status': 'Not Found',
