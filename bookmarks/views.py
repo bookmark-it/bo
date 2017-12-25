@@ -178,7 +178,8 @@ class FolderViewSet(viewsets.ModelViewSet):
         else:
             #return Folder.objects.filter(user=self.request.user)
             #queryset = Folder.objects.filter(authorised_users__id=self.request.user.id)
-            queryset = Folder.objects.filter(Q(collaborators__id=self.request.user.id) | Q(owner=self.request.user)).filter(parent=None).distinct()
+            #queryset = Folder.objects.filter(Q(collaborators__id=self.request.user.id) | Q(owner=self.request.user)).filter(parent=None).distinct()
+            queryset = Folder.objects.filter(owner=self.request.user).filter(parent=None)
             queryset = queryset.annotate(bk_count=Count('bookmarks')).order_by('-bk_count')
 
             return queryset
