@@ -52,7 +52,7 @@ class BookmarkSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True, required=False)
     keywords = KeywordSerializer(many=True, required=False)
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), default=serializers.CurrentUserDefault())
-    folder = SimpleFolderSerializer(many=False)
+    folder = SimpleFolderSerializer(many=False, read_only=True)
 
     class Meta:
         model = Bookmark

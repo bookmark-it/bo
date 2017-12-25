@@ -1,5 +1,5 @@
 from __future__ import absolute_import, unicode_literals
-from celery import shared_task 
+from celery import shared_task
 
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
@@ -28,7 +28,7 @@ from communication.webminer import webman
 from communication.fileimport import netscape_bookmarkfile_parser as nbp
 
 @shared_task(bind=True)
-def tempCeleryFunction(self, request, bookmark, serializer) : 
+def tempCeleryFunction(self, request, bookmark, serializer) :
     add_info = webman.retrieveUrlContent(serializer.data)
     serializer = BookmarkSerializer(bookmark, data = add_info, context={'request':request})
     if serializer.is_valid():
@@ -88,9 +88,6 @@ class BookmarkViewSet(viewsets.ViewSet):
         queryset = Bookmark.objects.filter(user=request.user)
         bookmark = get_object_or_404(queryset, pk = pk)
         serializer = self.serializer_class(bookmark)
-# Call communication : web miner to retrieve title & image
-        #webman.retrieveUrlContent(serializer.data)
-        #tempCeleryFunction.delay(request=request, bookmark=bookmark, serializer=serializer)
         return Response(serializer.data)
 
     def update(self, request, pk=None):
@@ -99,20 +96,13 @@ class BookmarkViewSet(viewsets.ViewSet):
         except Bookmark.DoesNotExist:
             return Response({
                 'status': 'Not Found',
-                'message': 'Bookmark could not be find.'
+                'message': 'Bookmark could not be found.'
             }, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = self.serializer_class(bookmark, data = request.data, context={'request':request})
+        serializer = self.serializer_class(bookmark, data=request.data, context={'request':request})
+
         if serializer.is_valid():
             serializer.save()
-# Call communication : web miner to retrieve title & image
-            add_info = webman.retrieveUrlContent(serializer.data)
-            serializer = self.serializer_class(bookmark, data = add_info, context={'request':request})
-            if serializer.is_valid():
-                serializer.save()
-            else :
-                print(serializer.errors)
-### finished hack
             return Response(
                 serializer.data, status=status.HTTP_202_ACCEPTED
             )
