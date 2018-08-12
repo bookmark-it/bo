@@ -1,39 +1,30 @@
-# python-getting-started
+<h1 align="center">
+  <a href="https://bk-it.herokuapp.com/app/bookmarks" target="_blank"><img src="https://github.com/bookmark-it/crossapp/blob/master/static/img/logo.png?raw=true" alt="Bookmark-it" height="160"></a>
+  <br>
+  Bookmark It - Python/Django Backend
+  <br>
+</h1>
 
-A barebones Python app, which can easily be deployed to Heroku.
+<h4 align="center">Manage your bookmarks from everywhere ! <a href="https://bk-it.herokuapp.com/app/bookmarks" target="_blank">Bookmark It</a></h4>
 
-This application supports the [Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python) article - check it out.
+<p align="center">
+  <a href="#description">Description</a> •
+  <a href="#license">License</a> •
+  <a href="#authors">Authors</a>
+</p>
 
-## Running Locally
+## Description
 
-Make sure you have Python [installed properly](http://install.python-guide.org).  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/) and [Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup).
+Python/Django server for <a href="https://bk-it.herokuapp.com/app/bookmarks" target="_blank">Bookmark It</a> !
 
-```sh
-$ git clone git@github.com:heroku/python-getting-started.git
-$ cd python-getting-started
-$ pip install -r requirements.txt
-$ createdb python_getting_started
-$ heroku local:run python manage.py migrate
-$ python manage.py collectstatic
-$ heroku local
-```
+## License
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+Distributed under the MIT license.
 
-## Deploying to Heroku
+## Authors
 
-```sh
-$ heroku create
-$ git push heroku master
-$ heroku run python manage.py migrate
-$ heroku open
-```
-or
+Backend
+[Alex Sibony](https://github.com/alsib) – sibony.alexandre@gmail.com
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-## Documentation
-
-For more information about using Python on Heroku, see these Dev Center articles:
-
-- [Python on Heroku](https://devcenter.heroku.com/categories/python)
+Fullstack
+[Julien Rougeron](https://github.com/julienr2) – [Portoflio](https://julienr2.github.io) – julien.rougeron@gmail.com
